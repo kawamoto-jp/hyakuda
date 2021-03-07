@@ -1,5 +1,5 @@
 class SendInfosController < ApplicationController
-  before_action :basic_auth
+  # before_action :basic_auth
 
   def index
     @users = SendInfo.all
@@ -55,9 +55,9 @@ class SendInfosController < ApplicationController
     @params = params.require(:send_info).permit(:name, :text, :atena)
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"] 
-    end
-  end
+  # def basic_auth
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"] 
+  #   end
+  # end
 end
