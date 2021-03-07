@@ -4,14 +4,14 @@ class SendInfosController < ApplicationController
   def index
     @users = SendInfo.all
     @user_num = SendInfo.count
-    dates = []
-    to  = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @items = SendInfo.where(created_at: from...to)
-    @items.order(:created_at).pluck(:created_at).each do |created_at|
-      dates << created_at.strftime("%m/%d")
-    end
-    @data = dates.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+    # dates = []
+    # to  = Time.current.at_end_of_day
+    # from = (to - 6.day).at_beginning_of_day
+    # @items = SendInfo.where(created_at: from...to)
+    # @items.order(:created_at).pluck(:created_at).each do |created_at|
+    #   dates << created_at.strftime("%m/%d")
+    # end
+    # @data = dates.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
   end
 
   def new
@@ -47,9 +47,9 @@ class SendInfosController < ApplicationController
 
   private
 
-  def self.chart_date
-    order(result_date: :asc).pluck('result_date', 'id').to_h
-  end
+  # def self.chart_date
+  #   order(result_date: :asc).pluck('result_date', 'id').to_h
+  # end
 
   def send_info_params
     @params = params.require(:send_info).permit(:name, :text, :atena)
